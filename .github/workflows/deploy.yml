@@ -32,8 +32,10 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.PRIVATE_KEY }}
         passphrase: ${{ secrets.PRIVATE_KEY_PASSHRASE }}
-        source: "dist/s3-image-upload/*"
-        target: "/var/www/angular-app"
-        overwrite: true
-        rm: true
+        script: |
+          cd ~/S3ImageFrontEndUpload
+          git pull origin master
+          npm install
+          ng build --configuration=production
+          cp -R dist/s3-image-upload/* /var/www/angular-app/
         
