@@ -13,27 +13,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install dependencies and build Angular app
-      run: |
-        npm install -g @angular/cli
-        npm install
-        ng build --configuration=production
-
-    - name: Copy build to server via SCP
-      uses: appleboy/scp-action@v0.1.7
+    - name: SSH and deploy
+      uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.PRIVATE_KEY }}
         passphrase: ${{ secrets.PRIVATE_KEY_PASSHRASE }}
-        source: "dist/s3-image-upload/*"
-        target: "/var/www/angular-app"
-        overwrite: true
-        rm: true
-        
+        script: |
+          cd ~/S3ImageFrontEndUpload
+          git pull origin master
+          npm install
+          ng build --configuration=production
+          cp -R dist/s3-image-upload/* /var/www/angular-app/
