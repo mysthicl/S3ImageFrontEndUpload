@@ -29,7 +29,7 @@ export class AppComponent {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
   
-    this.http.post<any>('https://api-photolive.robofest.vip/api/S3', formData).subscribe({
+    this.http.post<any>('https://api-bucket.robofest.vip/api/S3', formData).subscribe({
       next: (res) => {
         if (res.success) {
           this.imageUrl = res.data.url;
