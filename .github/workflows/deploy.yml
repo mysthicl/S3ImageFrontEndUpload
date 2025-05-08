@@ -30,7 +30,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        passphrase: ${{ secret.PRIVATE_KEY_PASSHRASE }}
+        passphrase: ${{ secrets.PRIVATE_KEY_PASSHRASE }}
         source: "dist/s3-image-upload/*"
         target: "/var/www/angular-app"
         
