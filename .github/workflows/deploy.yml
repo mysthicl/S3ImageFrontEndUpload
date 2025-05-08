@@ -34,4 +34,6 @@ jobs:
         passphrase: ${{ secrets.PRIVATE_KEY_PASSHRASE }}
         source: "dist/s3-image-upload/*"
         target: "/var/www/angular-app"
+        overwrite: true
+        rm: true
         
