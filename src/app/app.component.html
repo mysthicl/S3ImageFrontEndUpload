@@ -1,24 +1,23 @@
-<div class="container" style="max-width: 600px; margin: auto; padding: 2rem;">
-  <h2 style="background-color:green;">Subir imagen a S3</h2>
+<div class="upload-container">
+  <h2 class="upload-title">Subir imagen a S3</h2>
 
-  <form (submit)="onSubmit($event)">
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  <form class="upload-form" (submit)="onSubmit($event)">
+    <label class="file-input-label">Seleccionar archivo</label>
+    <input class="file-input" type="file" (change)="onFileSelected($event)"accept="image/*"/>
 
-    <button type="submit" [disabled]="!selectedFile" style="margin-top: 1rem;">
+    <button class="upload-button" type="submit" [disabled]="!selectedFile">
       Subir imagen
     </button>
   </form>
 
-  <div *ngIf="uploadSuccess" style="color: green; margin-top: 1rem;">
+  <div *ngIf="uploadSuccess" class="alert-success">
     Imagen subida correctamente.
   </div>
 
-  <div *ngIf="uploadError" style="color: red; margin-top: 1rem;">
-    Error al subir imagen.
-  </div>
+  <div *ngIf="uploadError" class="alert-error">Error al subir imagen.</div>
 
-  <div *ngIf="imageUrl" style="margin-top: 2rem;">
-    <h4>Vista previa:</h4>
-    <img [src]="imageUrl" alt="Imagen subida" style="max-width: 100%; border-radius: 8px;" />
+  <div *ngIf="imageUrl">
+    <h4 class="preview-title">Vista previa:</h4>
+    <img class="preview-image" [src]="imageUrl" alt="Imagen subida" />
   </div>
 </div>
