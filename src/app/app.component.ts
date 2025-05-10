@@ -12,9 +12,20 @@ export class AppComponent {
   imageUrl: string | null = null;
   uploadSuccess = false;
   uploadError = false;
+  showModal = false;
   
   constructor(private http: HttpClient) {}
 
+  openModal() {
+    this.showModal = true;
+    document.body.style.overflow = 'hidden';
+  }
+  
+  closeModal() {
+    this.showModal = false;
+    document.body.style.overflow = '';
+  }
+  
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
